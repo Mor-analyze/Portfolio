@@ -5,10 +5,10 @@ html
     <div class="header__text">
         <h1 class="heading-primary">
         <!-- Replace the following name with your name -->
-        <span>Syed Ali Hussnain</span>
+        <span>Morteza Kanani</span>
         </h1>
         <!-- Put a small paragraph about yourself -->
-        <p>A Web Developer based in Lahore, Pakistan.</p>
+        <p>A Data Analyst based in Vancouver, Canada.</p>
         <a href="#contact" class="btn btn--pink">Get in touch</a>
     </div>
 </div>
