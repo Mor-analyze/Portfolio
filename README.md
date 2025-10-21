@@ -1,6 +1,6 @@
 # Portfolio
 
-```html
+html
 <div class="header__text-box row">
     <div class="header__text">
         <h1 class="heading-primary">
@@ -12,4 +12,4 @@
         <a href="#contact" class="btn btn--pink">Get in touch</a>
     </div>
 </div>
-```
+
