@@ -1,3 +1,32 @@
+# Portfolio Template
+
+### A beautiful minimal and accessible portfolio template for Developers ✨.
+
+To View the live site click [here &rarr;](https://portfolio-template.surge.sh)
+
+![Portfolio Gif](/images/portfolio.gif)
+
+## Want to learn How to create a template like this ?
+
+You can watch [this video series](https://www.youtube.com/watch?v=1nchVfpMGSg&list=PLwJBGAxcH7GzdavgKlCACbESzr-40lw3L) on my youtube channel where I re-create this from scratch. 
+
+
+
+## Features
+
+- Clean, Simple and Modern UI Design.
+- Uses No CSS or JavaScript Frameworks or libraries as dependencies.
+- Built with only HTML, CSS and a bit of JavaScript 🔨.
+- Well Organized Documentation.
+- Keyboard support.
+- Fully Responsive.
+- Loads fast ⚡.
+
+## Lighthouse Report
+
+![Lighthouse Report](/images/lighthouse-report.png)
+
+### Contributions are warmly welcomed ❤️.
 
 ## Getting Started 🚀
 
@@ -22,10 +51,10 @@ In all of the places where you're supposed to fill your information you'll find 
     <div class="header__text">
         <h1 class="heading-primary">
         <!-- Replace the following name with your name -->
-        <span>Morteza Kanani</span>
+        <span>Syed Ali Hussnain</span>
         </h1>
         <!-- Put a small paragraph about yourself -->
-        <p>A Data Analyst -  Vancouver, Canada.</p>
+        <p>A Web Developer based in Lahore, Pakistan.</p>
         <a href="#contact" class="btn btn--pink">Get in touch</a>
     </div>
 </div>
