@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Driver Performance Analysis</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0a0a10; display: flex; justify-content: center; align-items: center; min-height: 100vh; font-family: 'Georgia', serif; }
+  .cover {
+    width: 900px; height: 560px; background: #0F0F14;
+    border-radius: 16px; position: relative; overflow: hidden;
+    border: 1px solid #1e1e2e;
+  }
+  .dots-bg {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+  .speed-lines {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;
+  }
+  .left-accent { position: absolute; left: 52px; top: 130px; width: 5px; height: 80px; background: #7F77DD; border-radius: 3px; }
+  .content { position: absolute; left: 72px; top: 120px; }
+  .title-main { font-size: 48px; font-weight: 700; color: #ffffff; letter-spacing: -1px; line-height: 1.1; }
+  .title-accent { font-size: 48px; font-weight: 700; color: #7F77DD; letter-spacing: -1px; line-height: 1.1; }
+  .subtitle { font-family: monospace; font-size: 13px; color: #666; letter-spacing: 4px; margin-top: 16px; }
+  .divider { width: 480px; height: 1px; background: #2C2C2A; margin: 20px 0; }
+  .cards { display: flex; gap: 16px; }
+  .kpi-card {
+    width: 130px; height: 72px; background: #16161e;
+    border-radius: 8px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 4px;
+  }
+  .kpi-card.purple { border: 0.5px solid #3C3489; }
+  .kpi-card.green  { border: 0.5px solid #0F6E56; }
+  .kpi-card.amber  { border: 0.5px solid #854F0B; }
+  .kpi-label { font-family: monospace; font-size: 10px; letter-spacing: 2px; }
+  .kpi-card.purple .kpi-label { color: #7F77DD; }
+  .kpi-card.green  .kpi-label { color: #1D9E75; }
+  .kpi-card.amber  .kpi-label { color: #EF9F27; }
+  .kpi-value { font-family: monospace; font-size: 22px; font-weight: 700; color: #fff; }
+  .bar-chart { position: absolute; left: 72px; bottom: 56px; display: flex; align-items: flex-end; gap: 3px; }
+  .bar { border-radius: 2px 2px 0 0; }
+  .footer-line { position: absolute; bottom: 40px; left: 52px; right: 52px; height: 0.5px; background: #2C2C2A; }
+  .footer-text { position: absolute; bottom: 18px; left: 52px; font-family: monospace; font-size: 11px; color: #444441; letter-spacing: 2px; }
+  .footer-year { position: absolute; bottom: 18px; right: 52px; font-family: monospace; font-size: 11px; color: #444441; }
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="dots-bg"></div>
+
+  <!-- Speed lines SVG -->
+  <svg class="speed-lines" viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg">
+    <!-- Left speed lines -->
+    <line x1="-20" y1="100" x2="500" y2="100" stroke="#7F77DD" stroke-width="1" opacity="0.14"/>
+    <line x1="-20" y1="118" x2="440" y2="118" stroke="#7F77DD" stroke-width="0.5" opacity="0.09"/>
+    <line x1="-20" y1="133" x2="380" y2="133" stroke="#7F77DD" stroke-width="0.5" opacity="0.07"/>
+    <!-- Right speed lines -->
+    <line x1="420" y1="455" x2="940" y2="455" stroke="#1D9E75" stroke-width="1" opacity="0.14"/>
+    <line x1="460" y1="472" x2="940" y2="472" stroke="#1D9E75" stroke-width="0.5" opacity="0.09"/>
+    <line x1="500" y1="485" x2="940" y2="485" stroke="#1D9E75" stroke-width="0.5" opacity="0.07"/>
+
+    <!-- Speedometer -->
+    <!-- Track -->
+    <path d="M 710 385 A 170 170 0 1 1 868 280" fill="none" stroke="#2C2C2A" stroke-width="22" stroke-linecap="round"/>
+    <!-- Green zone -->
+    <path d="M 710 385 A 170 170 0 0 1 800 200" fill="none" stroke="#1D9E75" stroke-width="22" stroke-linecap="round" opacity="0.9"/>
+    <!-- Amber zone -->
+    <path d="M 800 200 A 170 170 0 0 1 862 278" fill="none" stroke="#EF9F27" stroke-width="22" stroke-linecap="round" opacity="0.9"/>
+    <!-- Center -->
+    <circle cx="736" cy="315" r="30" fill="#16161e" stroke="#3C3489" stroke-width="2"/>
+    <!-- Needle -->
+    <line x1="736" y1="315" x2="808" y2="210" stroke="#E24B4A" stroke-width="3.5" stroke-linecap="round"/>
+    <circle cx="736" cy="315" r="8" fill="#E24B4A"/>
+    <!-- Tick marks -->
+    <g stroke="#888780" stroke-width="1.2" opacity="0.5">
+      <line x1="566" y1="312" x2="578" y2="316"/>
+      <line x1="576" y1="261" x2="587" y2="269"/>
+      <line x1="606" y1="220" x2="614" y2="230"/>
+      <line x1="647" y1="192" x2="651" y2="203"/>
+      <line x1="694" y1="179" x2="695" y2="191"/>
+      <line x1="742" y1="182" x2="741" y2="194"/>
+      <line x1="789" y1="198" x2="786" y2="209"/>
+      <line x1="830" y1="228" x2="825" y2="237"/>
+      <line x1="860" y1="270" x2="853" y2="277"/>
+    </g>
+    <!-- Speed label -->
+    <text x="736" y="358" text-anchor="middle" font-family="monospace" font-size="12" fill="#666" letter-spacing="2">km/h</text>
+    <text x="736" y="400" text-anchor="middle" font-family="monospace" font-size="26" font-weight="700" fill="#ffffff">187</text>
+  </svg>
+
+  <div class="left-accent"></div>
+
+  <div class="content">
+    <div class="title-main">Driver Performance</div>
+    <div class="title-accent">Analysis</div>
+    <div class="subtitle">DATA ANALYST PROJECT</div>
+    <div class="divider"></div>
+    <div class="cards">
+      <div class="kpi-card purple">
+        <div class="kpi-label">SPEED</div>
+        <div class="kpi-value">98.4%</div>
+      </div>
+      <div class="kpi-card green">
+        <div class="kpi-label">ACCURACY</div>
+        <div class="kpi-value">91.7%</div>
+      </div>
+      <div class="kpi-card amber">
+        <div class="kpi-label">EFFICIENCY</div>
+        <div class="kpi-value">85.2%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bar chart -->
+  <div class="bar-chart">
+    <div class="bar" style="width:16px;height:36px;background:#534AB7;"></div>
+    <div class="bar" style="width:16px;height:52px;background:#534AB7;"></div>
+    <div class="bar" style="width:16px;height:62px;background:#7F77DD;"></div>
+    <div class="bar" style="width:16px;height:44px;background:#534AB7;"></div>
+    <div class="bar" style="width:16px;height:56px;background:#AFA9EC;"></div>
+    <div class="bar" style="width:16px;height:40px;background:#534AB7;"></div>
+    <div class="bar" style="width:16px;height:60px;background:#1D9E75;"></div>
+    <div class="bar" style="width:16px;height:48px;background:#534AB7;"></div>
+    <div class="bar" style="width:16px;height:36px;background:#534AB7;"></div>
+    <div class="bar" style="width:16px;height:54px;background:#AFA9EC;"></div>
+    <div class="bar" style="width:16px;height:44px;background:#534AB7;"></div>
+    <div class="bar" style="width:16px;height:66px;background:#1D9E75;"></div>
+  </div>
+
+  <div class="footer-line"></div>
+  <div class="footer-text">PERFORMANCE METRICS &nbsp;·&nbsp; RACE DATA &nbsp;·&nbsp; BEHAVIORAL ANALYSIS</div>
+  <div class="footer-year">2024</div>
+</div>
+</body>
+</html>
