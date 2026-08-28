@@ -129,9 +129,29 @@ h3 {
 }
 
 .heading-primary {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
     line-height: 1;
     font-size: var(--font-size-huge);
     font-weight: 400;
+}
+
+.profile-photo {
+    width: 20rem;
+    height: 20rem;
+    flex: 0 0 20rem;
+    border: 4px solid var(--white);
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile-photo img {
+    width: 125%;
+    height: 125%;
+    max-width: none;
+    object-fit: cover;
+    transform: translate(-10%, -10%);
 }
 
 @media(max-width: 900px) {
@@ -426,6 +446,15 @@ body:not(.user-is-tabbing) a:focus {
     font-size: var(--font-size-medium);
 }
 
+.header__role {
+    font-size: var(--font-size-medium-1) !important;
+}
+
+.header__location {
+    margin-top: -2rem !important;
+    font-size: 1.8rem !important;
+}
+
 @media(max-width: 500px) {
     .header {
         text-align: center;
@@ -433,6 +462,18 @@ body:not(.user-is-tabbing) a:focus {
 
     .header__text p {
         transform: scale(.8);
+    }
+
+    .heading-primary {
+        justify-content: center;
+        gap: 1.5rem;
+        font-size: var(--font-size-large);
+    }
+
+    .profile-photo {
+        width: 11rem;
+        height: 11rem;
+        flex-basis: 11rem;
     }
 }
 
