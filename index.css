@@ -129,29 +129,9 @@ h3 {
 }
 
 .heading-primary {
-    display: flex;
-    align-items: center;
-    gap: 2.5rem;
     line-height: 1;
     font-size: var(--font-size-huge);
     font-weight: 400;
-}
-
-.profile-photo {
-    width: 22rem;
-    height: 22rem;
-    flex: 0 0 22rem;
-    border: 4px solid var(--white);
-    border-radius: 50%;
-    overflow: hidden;
-}
-
-.profile-photo img {
-    width: 125%;
-    height: 125%;
-    max-width: none;
-    object-fit: cover;
-    transform: translate(-10%, -10%);
 }
 
 @media(max-width: 900px) {
@@ -181,14 +161,7 @@ h3 {
 
 @media(max-width: 500px) {
     .heading-primary {
-        justify-content: center;
         font-size: var(--font-size-large);
-    }
-
-    .profile-photo {
-        width: 13rem;
-        height: 13rem;
-        flex-basis: 13rem;
     }
 
     h2 {
@@ -364,22 +337,8 @@ body:not(.user-is-tabbing) a:focus {
 
 .nav {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: flex-end;
     padding: var(--gutter-normal) 0;
-    border-bottom: 1px solid rgba(240, 233, 242, .25);
-}
-
-.nav__brand {
-    color: var(--white);
-    font-family: 'Jost', sans-serif;
-    font-size: var(--font-size-medium);
-    text-decoration: none;
-    letter-spacing: .1rem;
-}
-
-.nav__brand span {
-    color: var(--pink);
 }
 
 .nav__items {
@@ -447,38 +406,17 @@ body:not(.user-is-tabbing) a:focus {
 .header {
     background: linear-gradient(rgba(0,0,0, .1), rgba(0,0,0, .4)), 
         url('./images/header.jpg');
-    min-height: 100vh;
+    height: 100vh;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     font-size: var(--font-size-normal);
-    position: relative;
 }
 
 .header__text {
     position: absolute;
-    top: 54%;
+    top: 50%;
     transform: translateY(-50%);
-    max-width: 110rem;
-}
-
-.header__eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    margin: 0 0 2rem;
-    color: var(--pink);
-    font-family: 'Jost', sans-serif;
-    font-size: 1.6rem;
-    letter-spacing: .25rem;
-    text-transform: uppercase;
-}
-
-.header__eyebrow::before {
-    content: '';
-    width: 4rem;
-    height: 2px;
-    background: var(--pink);
 }
 
 .header__text p {
@@ -488,42 +426,6 @@ body:not(.user-is-tabbing) a:focus {
     font-size: var(--font-size-medium);
 }
 
-.header__location {
-    margin-top: -2rem !important;
-    color: var(--white-1);
-    font-size: 1.8rem !important;
-}
-
-.header__intro {
-    max-width: 52rem;
-    margin: 2rem 0 3.5rem !important;
-    color: var(--white-1);
-    font-size: 2rem !important;
-    line-height: 1.5;
-}
-
-.header__scroll {
-    position: absolute;
-    right: 4rem;
-    bottom: 4rem;
-    color: var(--white);
-    font-family: 'Jost', sans-serif;
-    font-size: 1.5rem;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: .15rem;
-}
-
-.header__scroll span {
-    padding-left: 1rem;
-    color: var(--pink);
-    font-size: 2rem;
-}
-
-.header__role {
-    font-size: var(--font-size-medium-1) !important;
-}
-
 @media(max-width: 500px) {
     .header {
         text-align: center;
@@ -531,31 +433,6 @@ body:not(.user-is-tabbing) a:focus {
 
     .header__text p {
         transform: scale(.8);
-    }
-
-    .nav__brand {
-        display: none;
-    }
-
-    .header__text {
-        top: 52%;
-        width: calc(100% - 4rem);
-    }
-
-    .header__eyebrow {
-        justify-content: center;
-        font-size: 1.3rem;
-    }
-
-    .header__intro {
-        margin-right: auto !important;
-        margin-left: auto !important;
-    }
-
-    .header__scroll {
-        right: 2rem;
-        bottom: 2rem;
-        font-size: 1.2rem;
     }
 }
 
@@ -603,7 +480,7 @@ body:not(.user-is-tabbing) a:focus {
 .work__code {
     display: block;
     height: 3rem;
-    margin-right: var(--gutter-small);
+    margin-left: var(--gutter-normal);
     transition: all .3s;
 }
 
